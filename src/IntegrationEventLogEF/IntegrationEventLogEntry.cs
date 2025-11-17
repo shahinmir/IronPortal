@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace eShop.IntegrationEventLogEF;
+namespace IronExchange.IntegrationEventLogEF;
 
 public class IntegrationEventLogEntry
 {

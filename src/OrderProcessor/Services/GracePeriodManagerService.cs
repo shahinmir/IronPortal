@@ -1,9 +1,9 @@
-﻿using eShop.EventBus.Abstractions;
+﻿using IronExchange.EventBus.Abstractions;
 using Microsoft.Extensions.Options;
 using Npgsql;
-using eShop.OrderProcessor.Events;
+using IronExchange.OrderProcessor.Events;
 
-namespace eShop.OrderProcessor.Services
+namespace IronExchange.OrderProcessor.Services
 {
     public class GracePeriodManagerService(
         IOptions<BackgroundTaskOptions> options,

@@ -1,7 +1,7 @@
-﻿namespace eShop.Ordering.UnitTests.Domain;
+﻿namespace IronExchange.Ordering.UnitTests.Domain;
 
-using eShop.Ordering.Domain.AggregatesModel.OrderAggregate;
-using eShop.Ordering.UnitTests.Domain;
+using IronExchange.Ordering.Domain.AggregatesModel.OrderAggregate;
+using IronExchange.Ordering.UnitTests.Domain;
 
 [TestClass]
 public class OrderAggregateTest

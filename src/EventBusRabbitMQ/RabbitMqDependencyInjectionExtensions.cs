@@ -1,4 +1,4 @@
-﻿using eShop.EventBusRabbitMQ;
+﻿using IronExchange.EventBusRabbitMQ;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using System.Diagnostics.CodeAnalysis;

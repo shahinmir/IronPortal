@@ -1,4 +1,4 @@
-﻿namespace eShop.PaymentProcessor;
+﻿namespace IronExchange.PaymentProcessor;
 
 public class PaymentOptions
 {

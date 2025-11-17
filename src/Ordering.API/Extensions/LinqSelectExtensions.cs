@@ -1,4 +1,4 @@
-﻿namespace eShop.Ordering.API.Extensions;
+﻿namespace IronExchange.Ordering.API.Extensions;
 
 public static class LinqSelectExtensions
 {

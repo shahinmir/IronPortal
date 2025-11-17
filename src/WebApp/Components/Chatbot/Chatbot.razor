@@ -1,7 +1,7 @@
 ﻿@rendermode @(new InteractiveServerRenderMode(prerender: false))
 @using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.Extensions.AI
-@using eShop.WebApp.Chatbot
+@using IronExchange.WebApp.Chatbot
 @inject IJSRuntime JS
 @inject NavigationManager Nav
 @inject CatalogService CatalogService
@@ -27,7 +27,7 @@
         }
         else if (missingConfiguration)
         {
-            <p class="message message-assistant"><strong>The chatbot is missing required configuration.</strong> Please set 'useOpenAI = true' in eShop.AppHost/Program.cs. You'll need an API key or an Azure Subscription to enable AI features.</p>
+            <p class="message message-assistant"><strong>The chatbot is missing required configuration.</strong> Please set 'useOpenAI = true' in IronExchange.AppHost/Program.cs. You'll need an API key or an Azure Subscription to enable AI features.</p>
         }
 
         @if (thinking)

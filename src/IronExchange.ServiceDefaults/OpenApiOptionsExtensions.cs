@@ -9,7 +9,7 @@ using Microsoft.Extensions.Primitives;
 using Microsoft.OpenApi;
 using System.Text.Json.Nodes;
 
-namespace eShop.ServiceDefaults;
+namespace IronExchange.ServiceDefaults;
 
 internal static class OpenApiOptionsExtensions
 {

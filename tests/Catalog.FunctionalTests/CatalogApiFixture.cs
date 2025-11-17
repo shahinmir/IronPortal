@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.AspNetCore.Mvc.Testing;
 
-namespace eShop.Catalog.FunctionalTests;
+namespace IronExchange.Catalog.FunctionalTests;
 
 public sealed class CatalogApiFixture : WebApplicationFactory<Program>, IAsyncLifetime
 {

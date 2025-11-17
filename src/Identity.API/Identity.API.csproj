@@ -42,7 +42,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\eShop.ServiceDefaults\eShop.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\IronExchange.ServiceDefaults\IronExchange.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\IronExchange.ServiceDefaults\IronExchange.ServiceDefaults.csproj" />
   </ItemGroup>
   
   <ItemGroup>

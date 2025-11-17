@@ -1,4 +1,6 @@
-namespace eShop.Ordering.Domain.Events;
+﻿using IronExchange.Ordering.Domain.AggregatesModel.OrderAggregate;
+
+namespace IronExchange.Ordering.Domain.Events;
 
 /// <summary>
 /// Event used when the order is paid

@@ -1,6 +1,6 @@
-﻿namespace eShop.OrderProcessor.Events
+﻿namespace IronExchange.OrderProcessor.Events
 {
-    using eShop.EventBus.Events;
+    using IronExchange.EventBus.Events;
 
     public record GracePeriodConfirmedIntegrationEvent : IntegrationEvent
     {

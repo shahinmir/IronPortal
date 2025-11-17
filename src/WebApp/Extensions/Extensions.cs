@@ -1,6 +1,6 @@
-﻿using eShop.Basket.API.Grpc;
-using eShop.WebApp.Services.OrderStatus.IntegrationEvents;
-using eShop.WebAppComponents.Services;
+﻿using IronExchange.Basket.API.Grpc;
+using IronExchange.WebApp.Services.OrderStatus.IntegrationEvents;
+using IronExchange.WebAppComponents.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Components.Authorization;

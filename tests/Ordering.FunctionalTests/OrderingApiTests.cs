@@ -3,12 +3,12 @@ using System.Text;
 using System.Text.Json;
 using Asp.Versioning;
 using Asp.Versioning.Http;
-using eShop.Ordering.API.Application.Commands;
-using eShop.Ordering.API.Application.Models;
-using eShop.Ordering.API.Application.Queries;
+using IronExchange.Ordering.API.Application.Commands;
+using IronExchange.Ordering.API.Application.Models;
+using IronExchange.Ordering.API.Application.Queries;
 using Microsoft.AspNetCore.Mvc.Testing;
 
-namespace eShop.Ordering.FunctionalTests;
+namespace IronExchange.Ordering.FunctionalTests;
 
 public sealed class OrderingApiTests : IClassFixture<OrderingApiFixture>
 {

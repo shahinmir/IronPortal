@@ -1,6 +1,6 @@
-﻿namespace eShop.Ordering.API.Application.Commands;
+﻿namespace IronExchange.Ordering.API.Application.Commands;
 
-using eShop.Ordering.Domain.AggregatesModel.OrderAggregate;
+using IronExchange.Ordering.Domain.AggregatesModel.OrderAggregate;
 
 // Regular CommandHandler
 public class CreateOrderCommandHandler

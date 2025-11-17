@@ -1,4 +1,4 @@
-﻿namespace eShop.Ordering.Domain.Seedwork;
+﻿namespace IronExchange.Ordering.Domain.Seedwork;
 
 public abstract class Entity
 {

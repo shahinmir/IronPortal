@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
 
-namespace eShop.WebhookClient.Services;
+namespace IronExchange.WebhookClient.Services;
 
 public class HooksRepository
 {

@@ -1,4 +1,4 @@
-﻿namespace eShop.Identity.API.Services
+﻿namespace IronExchange.Identity.API.Services
 {
     public interface IRedirectService
     {

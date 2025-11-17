@@ -1,8 +1,8 @@
-using System.Text.Json;
-using eShop.Catalog.API.Services;
+﻿using System.Text.Json;
+using IronExchange.Catalog.API.Services;
 using Pgvector;
 
-namespace eShop.Catalog.API.Infrastructure;
+namespace IronExchange.Catalog.API.Infrastructure;
 
 public partial class CatalogContextSeed(
     IWebHostEnvironment env,

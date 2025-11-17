@@ -1,4 +1,4 @@
-﻿namespace eShop.OrderProcessor;
+﻿namespace IronExchange.OrderProcessor;
 
 public class BackgroundTaskOptions
 {

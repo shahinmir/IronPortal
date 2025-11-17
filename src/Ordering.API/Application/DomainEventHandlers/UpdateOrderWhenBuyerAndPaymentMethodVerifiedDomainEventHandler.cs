@@ -1,4 +1,4 @@
-﻿namespace eShop.Ordering.API.Application.DomainEventHandlers;
+﻿namespace IronExchange.Ordering.API.Application.DomainEventHandlers;
 
 public class UpdateOrderWhenBuyerAndPaymentMethodVerifiedDomainEventHandler : INotificationHandler<BuyerAndPaymentMethodVerifiedDomainEvent>
 {

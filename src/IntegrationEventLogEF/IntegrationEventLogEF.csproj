@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-    <RootNamespace>eShop.IntegrationEventLogEF</RootNamespace>
+    <RootNamespace>IronExchange.IntegrationEventLogEF</RootNamespace>
     <IsPublishable>false</IsPublishable>
   </PropertyGroup>
 

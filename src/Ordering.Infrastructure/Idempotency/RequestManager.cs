@@ -1,4 +1,4 @@
-﻿namespace eShop.Ordering.Infrastructure.Idempotency;
+﻿namespace IronExchange.Ordering.Infrastructure.Idempotency;
 
 public class RequestManager : IRequestManager
 {

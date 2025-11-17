@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace eShop.Ordering.UnitTests.Application;
+namespace IronExchange.Ordering.UnitTests.Application;
 
 [TestClass]
 public class SetStockRejectedOrderStatusCommandTest

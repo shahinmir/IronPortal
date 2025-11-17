@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using eShop.WebAppComponents.Catalog;
+using IronExchange.WebAppComponents.Catalog;
 
-namespace eShop.WebAppComponents.Services
+
+namespace IronExchange.WebAppComponents.Services
 {
     public interface ICatalogService
     {

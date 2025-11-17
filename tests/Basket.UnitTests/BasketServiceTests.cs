@@ -1,12 +1,12 @@
 ﻿using System.Security.Claims;
-using eShop.Basket.API.Repositories;
-using eShop.Basket.API.Grpc;
-using eShop.Basket.API.Model;
-using eShop.Basket.UnitTests.Helpers;
+using IronExchange.Basket.API.Repositories;
+using IronExchange.Basket.API.Grpc;
+using IronExchange.Basket.API.Model;
+using IronExchange.Basket.UnitTests.Helpers;
 using Microsoft.Extensions.Logging.Abstractions;
-using BasketItem = eShop.Basket.API.Model.BasketItem;
+using BasketItem = IronExchange.Basket.API.Model.BasketItem;
 
-namespace eShop.Basket.UnitTests;
+namespace IronExchange.Basket.UnitTests;
 
 [TestClass]
 public class BasketServiceTests
@@ -19,10 +19,10 @@ public class BasketServiceTests
         var serverCallContext = TestServerCallContext.Create();
         serverCallContext.SetUserState("__HttpContext", new DefaultHttpContext());
 
-        var response = await service.GetBasket(new GetBasketRequest(), serverCallContext);
+        var response = await service.GetBasket(new IronExchange.Basket.API.Grpc.GetBasketRequest(), serverCallContext);
 
         Assert.IsInstanceOfType<CustomerBasketResponse>(response);
-        Assert.AreEqual(response.Items.Count(), 0);
+        Assert.AreEqual(0, response.Items.Count());
     }
 
     [TestMethod]
@@ -37,7 +37,7 @@ public class BasketServiceTests
         httpContext.User = new ClaimsPrincipal(new ClaimsIdentity([new Claim("sub", "1")]));
         serverCallContext.SetUserState("__HttpContext", httpContext);
 
-        var response = await service.GetBasket(new GetBasketRequest(), serverCallContext);
+        var response = await service.GetBasket(new IronExchange.Basket.API.Grpc.GetBasketRequest(), serverCallContext);
 
         Assert.IsInstanceOfType<CustomerBasketResponse>(response);
         Assert.AreEqual(response.Items.Count(), 1);
@@ -54,7 +54,7 @@ public class BasketServiceTests
         var httpContext = new DefaultHttpContext();
         serverCallContext.SetUserState("__HttpContext", httpContext);
 
-        var response = await service.GetBasket(new GetBasketRequest(), serverCallContext);
+        var response = await service.GetBasket(new IronExchange.Basket.API.Grpc.GetBasketRequest(), serverCallContext);
 
         Assert.IsInstanceOfType<CustomerBasketResponse>(response);
         Assert.AreEqual(response.Items.Count(), 0);

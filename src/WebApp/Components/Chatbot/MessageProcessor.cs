@@ -3,7 +3,7 @@ using System.Text.Encodings.Web;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Components;
 
-namespace eShop.WebApp.Chatbot;
+namespace IronExchange.WebApp.Chatbot;
 
 public static partial class MessageProcessor
 {

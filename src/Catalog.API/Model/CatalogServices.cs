@@ -1,4 +1,4 @@
-﻿using eShop.Catalog.API.Services;
+﻿using IronExchange.Catalog.API.Services;
 using Microsoft.AspNetCore.Mvc;
 
 public class CatalogServices(

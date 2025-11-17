@@ -1,4 +1,4 @@
-﻿namespace eShop.Ordering.UnitTests.Application;
+﻿namespace IronExchange.Ordering.UnitTests.Application;
 
 [TestClass]
 public class IdentifiedCommandHandlerTest

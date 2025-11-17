@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Scalar.AspNetCore;
 
-namespace eShop.ServiceDefaults;
+namespace IronExchange.ServiceDefaults;
 
 public static partial class Extensions
 {

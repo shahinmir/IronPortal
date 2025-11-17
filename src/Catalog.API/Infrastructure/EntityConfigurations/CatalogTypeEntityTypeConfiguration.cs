@@ -1,4 +1,4 @@
-﻿namespace eShop.Catalog.API.Infrastructure.EntityConfigurations;
+﻿namespace IronExchange.Catalog.API.Infrastructure.EntityConfigurations;
 
 class CatalogTypeEntityTypeConfiguration
     : IEntityTypeConfiguration<CatalogType>

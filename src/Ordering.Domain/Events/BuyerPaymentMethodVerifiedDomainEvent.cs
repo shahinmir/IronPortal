@@ -1,4 +1,6 @@
-﻿namespace eShop.Ordering.Domain.Events;
+﻿using IronExchange.Ordering.Domain.AggregatesModel.BuyerAggregate;
+
+namespace IronExchange.Ordering.Domain.Events;
 
 public class BuyerAndPaymentMethodVerifiedDomainEvent
     : INotification

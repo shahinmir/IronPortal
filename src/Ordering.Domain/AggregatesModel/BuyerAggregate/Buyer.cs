@@ -1,6 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using IronExchange.Ordering.Domain.Events;
+using IronExchange.Ordering.Domain.Seedwork;
+using IronExchange.Ordering.Domain.AggregatesModel.BuyerAggregate; // Add this using if not present
 
-namespace eShop.Ordering.Domain.AggregatesModel.BuyerAggregate;
+namespace IronExchange.Ordering.Domain.AggregatesModel.BuyerAggregate;
 
 public class Buyer
     : Entity, IAggregateRoot

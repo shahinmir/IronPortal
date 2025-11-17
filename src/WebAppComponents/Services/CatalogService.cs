@@ -1,8 +1,9 @@
 ﻿using System.Net.Http.Json;
 using System.Web;
-using eShop.WebAppComponents.Catalog;
+using IronExchange.WebAppComponents.Catalog;
 
-namespace eShop.WebAppComponents.Services;
+
+namespace IronExchange.WebAppComponents.Services;
 
 public class CatalogService(HttpClient httpClient) : ICatalogService
 {

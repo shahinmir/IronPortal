@@ -2,9 +2,9 @@
 global using System.Text;
 global using System.Text.Json;
 global using Microsoft.EntityFrameworkCore;
-global using eShop.EventBus.Abstractions;
-global using eShop.EventBus.Events;
-global using eShop.ServiceDefaults;
+global using IronExchange.EventBus.Abstractions;
+global using IronExchange.EventBus.Events;
+global using IronExchange.ServiceDefaults;
 global using Webhooks.API.Infrastructure;
 global using Webhooks.API.IntegrationEvents;
 global using Webhooks.API.Model;

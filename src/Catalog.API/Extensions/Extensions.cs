@@ -1,4 +1,4 @@
-﻿using eShop.Catalog.API.Services;
+﻿using IronExchange.Catalog.API.Services;
 
 public static class Extensions
 {

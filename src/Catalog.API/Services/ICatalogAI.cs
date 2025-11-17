@@ -1,6 +1,6 @@
 ﻿using Pgvector;
 
-namespace eShop.Catalog.API.Services;
+namespace IronExchange.Catalog.API.Services;
 
 public interface ICatalogAI
 {

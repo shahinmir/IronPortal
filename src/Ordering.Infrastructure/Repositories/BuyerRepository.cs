@@ -1,4 +1,6 @@
-﻿namespace eShop.Ordering.Infrastructure.Repositories;
+﻿using IronExchange.Ordering.Domain.Seedwork;
+
+namespace IronExchange.Ordering.Infrastructure.Repositories;
 
 public class BuyerRepository
     : IBuyerRepository

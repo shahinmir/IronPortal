@@ -1,6 +1,6 @@
-﻿using eShop.WebAppComponents.Catalog;
+﻿using IronExchange.WebAppComponents.Catalog;
 
-namespace eShop.WebApp.Services
+namespace IronExchange.WebApp.Services
 {
     public interface IBasketState
     {

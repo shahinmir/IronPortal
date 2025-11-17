@@ -1,6 +1,6 @@
-﻿namespace eShop.Ordering.API.Infrastructure;
+﻿namespace IronExchange.Ordering.API.Infrastructure;
 
-using eShop.Ordering.Domain.AggregatesModel.BuyerAggregate;
+using IronExchange.Ordering.Domain.AggregatesModel.BuyerAggregate;
 
 public class OrderingContextSeed: IDbSeeder<OrderingContext>
 {

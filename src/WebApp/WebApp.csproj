@@ -4,15 +4,16 @@
     <TargetFramework>net10.0</TargetFramework>
     <UserSecretsId>2d86f364-a439-47c5-9468-3b85a7d9a18e</UserSecretsId>
     <Nullable>enable</Nullable>
-    <RootNamespace>eShop.WebApp</RootNamespace>
+    <RootNamespace>IronExchange.WebApp</RootNamespace>
 
     <!-- Disable RZ10021, which is failing due to a Razor bug, according to Mackinnon. -->
     <NoWarn>$(NoWarn);RZ10021</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\eShop.ServiceDefaults\eShop.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\IronExchange.ServiceDefaults\IronExchange.ServiceDefaults.csproj" />
     <ProjectReference Include="..\EventBusRabbitMQ\EventBusRabbitMQ.csproj" />
+    <ProjectReference Include="..\IronExchange.ServiceDefaults\IronExchange.ServiceDefaults.csproj" />
     <ProjectReference Include="..\WebAppComponents\WebAppComponents.csproj" />
   </ItemGroup>
 

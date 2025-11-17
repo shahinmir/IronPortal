@@ -1,5 +1,4 @@
-﻿using eShop.WebApp.Components;
-using eShop.ServiceDefaults;
+﻿using IronExchange.WebApp.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 

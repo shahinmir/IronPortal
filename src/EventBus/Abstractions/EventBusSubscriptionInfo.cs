@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization.Metadata;
 
-namespace eShop.EventBus.Abstractions;
+namespace IronExchange.EventBus.Abstractions;
 
 public class EventBusSubscriptionInfo
 {

@@ -1,11 +1,11 @@
-using System.Net.Http.Json;
+﻿using System.Net.Http.Json;
 using System.Text.Json;
 using Asp.Versioning;
 using Asp.Versioning.Http;
-using eShop.Catalog.API.Model;
+using IronExchange.Catalog.API.Model;
 using Microsoft.AspNetCore.Mvc.Testing;
 
-namespace eShop.Catalog.FunctionalTests;
+namespace IronExchange.Catalog.FunctionalTests;
 
 public sealed class CatalogApiTests : IClassFixture<CatalogApiFixture>
 {

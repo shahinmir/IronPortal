@@ -1,6 +1,6 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace eShop.Catalog.API.Model;
+namespace IronExchange.Catalog.API.Model;
 
 public class CatalogType
 {

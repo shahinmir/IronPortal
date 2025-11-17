@@ -1,6 +1,6 @@
-﻿using eShop.EventBus.Abstractions;
+﻿using IronExchange.EventBus.Abstractions;
 
-namespace eShop.WebApp.Services.OrderStatus.IntegrationEvents;
+namespace IronExchange.WebApp.Services.OrderStatus.IntegrationEvents;
 
 public class OrderStatusChangedToShippedIntegrationEventHandler(
     OrderStatusNotificationService orderStatusNotificationService,

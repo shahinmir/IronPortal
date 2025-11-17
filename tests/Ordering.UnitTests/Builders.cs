@@ -1,6 +1,6 @@
-﻿using eShop.Ordering.Domain.AggregatesModel.OrderAggregate;
+﻿using IronExchange.Ordering.Domain.AggregatesModel.OrderAggregate;
 
-namespace eShop.Ordering.UnitTests.Domain;
+namespace IronExchange.Ordering.UnitTests.Domain;
 
 public class AddressBuilder
 {

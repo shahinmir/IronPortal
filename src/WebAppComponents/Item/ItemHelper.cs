@@ -1,6 +1,7 @@
-﻿using eShop.WebAppComponents.Catalog;
+﻿using IronExchange.WebAppComponents.Catalog;
 
-namespace eShop.WebAppComponents.Item;
+
+namespace IronExchange.WebAppComponents.Item;
 
 public static class ItemHelper
 {

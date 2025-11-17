@@ -1,4 +1,4 @@
-﻿namespace eShop.Basket.API.Model;
+﻿namespace IronExchange.Basket.API.Model;
 
 public class BasketItem : IValidatableObject
 {

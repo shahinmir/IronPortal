@@ -1,8 +1,8 @@
-﻿namespace eShop.Ordering.UnitTests.Application;
+﻿namespace IronExchange.Ordering.UnitTests.Application;
 
 using Microsoft.AspNetCore.Http.HttpResults;
-using eShop.Ordering.API.Application.Queries;
-using Order = eShop.Ordering.API.Application.Queries.Order;
+using IronExchange.Ordering.API.Application.Queries;
+using Order = IronExchange.Ordering.API.Application.Queries.Order;
 using NSubstitute.ExceptionExtensions;
 
 [TestClass]

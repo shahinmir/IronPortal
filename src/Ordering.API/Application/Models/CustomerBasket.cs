@@ -1,4 +1,4 @@
-﻿namespace eShop.Ordering.API.Application.Models;
+﻿namespace IronExchange.Ordering.API.Application.Models;
 
 public class CustomerBasket
 {

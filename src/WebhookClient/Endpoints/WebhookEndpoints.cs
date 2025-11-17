@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
-namespace eShop.WebhookClient.Endpoints;
+namespace IronExchange.WebhookClient.Endpoints;
 
 public static class WebhookEndpoints
 {

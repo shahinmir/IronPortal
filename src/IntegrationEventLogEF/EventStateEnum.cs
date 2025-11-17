@@ -1,4 +1,4 @@
-﻿namespace eShop.IntegrationEventLogEF;
+﻿namespace IronExchange.IntegrationEventLogEF;
 
 public enum EventStateEnum
 {

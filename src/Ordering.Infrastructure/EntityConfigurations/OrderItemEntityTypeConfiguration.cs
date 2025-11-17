@@ -1,4 +1,4 @@
-﻿namespace eShop.Ordering.Infrastructure.EntityConfigurations;
+﻿namespace IronExchange.Ordering.Infrastructure.EntityConfigurations;
 
 class OrderItemEntityTypeConfiguration
     : IEntityTypeConfiguration<OrderItem>

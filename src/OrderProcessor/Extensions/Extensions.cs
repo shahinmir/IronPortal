@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
-using eShop.OrderProcessor.Events;
+using IronExchange.OrderProcessor.Events;
 
-namespace eShop.OrderProcessor.Extensions;
+namespace IronExchange.OrderProcessor.Extensions;
 
 public static class Extensions
 {

@@ -1,5 +1,5 @@
-﻿global using eShop.ServiceDefaults;
-global using eShop.WebhookClient.Components;
-global using eShop.WebhookClient.Endpoints;
-global using eShop.WebhookClient.Extensions;
-global using eShop.WebhookClient.Services;
+﻿global using IronExchange.ServiceDefaults;
+
+global using IronExchange.WebhookClient.Endpoints;
+global using IronExchange.WebhookClient.Extensions;
+global using IronExchange.WebhookClient.Services;

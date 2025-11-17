@@ -1,6 +1,7 @@
-﻿using eShop.IntegrationEventLogEF;
+﻿using IronExchange.IntegrationEventLogEF;
+using IronExchange.Ordering.Domain.Seedwork;
 
-namespace eShop.Ordering.Infrastructure;
+namespace IronExchange.Ordering.Infrastructure;
 
 /// <remarks>
 /// Add migrations using the following command inside the 'Ordering.Infrastructure' project directory:

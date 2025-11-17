@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace eShop.Identity.API.Data.Migrations
+namespace IronExchange.Identity.API.Data.Migrations
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration

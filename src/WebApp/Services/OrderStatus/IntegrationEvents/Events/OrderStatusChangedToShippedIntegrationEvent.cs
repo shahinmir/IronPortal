@@ -1,6 +1,6 @@
-﻿using eShop.EventBus.Events;
+﻿using IronExchange.EventBus.Events;
 
-namespace eShop.WebApp.Services.OrderStatus.IntegrationEvents;
+namespace IronExchange.WebApp.Services.OrderStatus.IntegrationEvents;
 
 public record OrderStatusChangedToShippedIntegrationEvent : IntegrationEvent
 {

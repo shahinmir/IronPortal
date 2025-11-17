@@ -1,4 +1,4 @@
-﻿namespace eShop.Ordering.API.Application.IntegrationEvents.EventHandling;
+﻿namespace IronExchange.Ordering.API.Application.IntegrationEvents.EventHandling;
 
 public class OrderPaymentFailedIntegrationEventHandler(
     IMediator mediator,

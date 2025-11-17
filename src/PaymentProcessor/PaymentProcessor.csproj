@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\eShop.ServiceDefaults\eShop.ServiceDefaults.csproj" />
     <ProjectReference Include="..\EventBusRabbitMQ\EventBusRabbitMQ.csproj" />
+    <ProjectReference Include="..\IronExchange.ServiceDefaults\IronExchange.ServiceDefaults.csproj" />
   </ItemGroup>
 
 </Project>

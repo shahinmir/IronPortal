@@ -1,4 +1,6 @@
-﻿namespace eShop.EventBus.Abstractions;
+﻿using IronExchange.EventBus.Events;
+
+namespace IronExchange.EventBus.Abstractions;
 
 public interface IEventBus
 {

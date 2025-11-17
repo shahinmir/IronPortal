@@ -1,4 +1,6 @@
-﻿namespace eShop.Ordering.Infrastructure;
+﻿using IronExchange.Ordering.Domain.Seedwork;
+
+namespace IronExchange.Ordering.Infrastructure;
 
 static class MediatorExtension
 {

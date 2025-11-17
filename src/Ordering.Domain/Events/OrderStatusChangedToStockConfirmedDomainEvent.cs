@@ -1,4 +1,4 @@
-﻿namespace eShop.Ordering.Domain.Events;
+﻿namespace IronExchange.Ordering.Domain.Events;
 
 /// <summary>
 /// Event used when the order stock items are confirmed

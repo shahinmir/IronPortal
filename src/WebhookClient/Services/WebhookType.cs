@@ -1,4 +1,4 @@
-﻿namespace eShop.WebhookClient.Services;
+﻿namespace IronExchange.WebhookClient.Services;
 
 public enum WebhookType
 {

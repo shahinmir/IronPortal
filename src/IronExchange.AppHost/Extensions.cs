@@ -3,7 +3,7 @@ using Aspire.Hosting.Yarp;
 using Aspire.Hosting.Yarp.Transforms;
 using Yarp.ReverseProxy.Configuration;
 
-namespace eShop.AppHost;
+namespace IronExchange.AppHost;
 
 internal enum OpenAITarget
 {

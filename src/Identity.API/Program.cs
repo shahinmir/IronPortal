@@ -1,4 +1,6 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using IronExchange.ServiceDefaults;
+
+var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 

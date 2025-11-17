@@ -1,8 +1,8 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Microsoft.Extensions.AI;
 using Pgvector;
 
-namespace eShop.Catalog.API.Services;
+namespace IronExchange.Catalog.API.Services;
 
 public sealed class CatalogAI : ICatalogAI
 {

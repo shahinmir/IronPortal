@@ -1,4 +1,4 @@
-﻿namespace eShop.Identity.API.Configuration
+﻿namespace IronExchange.Identity.API.Configuration
 {
     public class Config
     {

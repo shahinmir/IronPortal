@@ -1,6 +1,6 @@
-﻿using eShop.Basket.API.Model;
+﻿using IronExchange.Basket.API.Model;
 
-namespace eShop.Basket.API.Repositories;
+namespace IronExchange.Basket.API.Repositories;
 
 public interface IBasketRepository
 {

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-    <RootNamespace>eShop.Ordering.API</RootNamespace>
+    <RootNamespace>IronExchange.Ordering.API</RootNamespace>
     <UserSecretsId>7161b768-033d-41c7-bc5d-37528275e1f3</UserSecretsId>
   </PropertyGroup>
 
@@ -18,7 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EventBusRabbitMQ\EventBusRabbitMQ.csproj" />
     <ProjectReference Include="..\IntegrationEventLogEF\IntegrationEventLogEF.csproj" />
-    <ProjectReference Include="..\eShop.ServiceDefaults\eShop.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\IronExchange.ServiceDefaults\IronExchange.ServiceDefaults.csproj" />
     <ProjectReference Include="..\Ordering.Domain\Ordering.Domain.csproj" />
     <ProjectReference Include="..\Ordering.Infrastructure\Ordering.Infrastructure.csproj" />
   </ItemGroup>

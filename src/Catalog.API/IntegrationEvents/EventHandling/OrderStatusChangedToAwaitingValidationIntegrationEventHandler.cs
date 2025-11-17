@@ -1,4 +1,4 @@
-﻿namespace eShop.Catalog.API.IntegrationEvents.EventHandling;
+﻿namespace IronExchange.Catalog.API.IntegrationEvents.EventHandling;
 
 public class OrderStatusChangedToAwaitingValidationIntegrationEventHandler(
     CatalogContext catalogContext,

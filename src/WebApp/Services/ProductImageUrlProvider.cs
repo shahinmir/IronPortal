@@ -1,6 +1,6 @@
-﻿using eShop.WebAppComponents.Services;
+﻿using IronExchange.WebAppComponents.Services;
 
-namespace eShop.WebApp.Services;
+namespace IronExchange.WebApp.Services;
 
 public class ProductImageUrlProvider : IProductImageUrlProvider
 {

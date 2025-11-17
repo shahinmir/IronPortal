@@ -1,5 +1,5 @@
 ﻿
-namespace eShop.Ordering.Domain.Events;
+namespace IronExchange.Ordering.Domain.Events;
 
 /// <summary>
 /// Event used when an order is created

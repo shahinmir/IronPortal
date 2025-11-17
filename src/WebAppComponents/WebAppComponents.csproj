@@ -4,7 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>eShop.WebAppComponents</RootNamespace>
+    <RootNamespace>IronExchange.WebAppComponents</RootNamespace>
   </PropertyGroup>
 
 

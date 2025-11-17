@@ -1,10 +1,10 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using eShop.WebAppComponents.Catalog;
-using eShop.WebAppComponents.Services;
+using IronExchange.WebAppComponents.Catalog;
+using IronExchange.WebAppComponents.Services;
 
-namespace eShop.WebApp.Services;
+namespace IronExchange.WebApp.Services;
 
 public class BasketState(
     BasketService basketService,

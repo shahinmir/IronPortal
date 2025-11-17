@@ -1,7 +1,7 @@
-﻿using eShop.Ordering.API.Application.IntegrationEvents;
-using eShop.Ordering.Domain.AggregatesModel.OrderAggregate;
+﻿using IronExchange.Ordering.API.Application.IntegrationEvents;
+using IronExchange.Ordering.Domain.AggregatesModel.OrderAggregate;
 
-namespace eShop.Ordering.UnitTests.Application;
+namespace IronExchange.Ordering.UnitTests.Application;
 
 [TestClass]
 public class NewOrderRequestHandlerTest

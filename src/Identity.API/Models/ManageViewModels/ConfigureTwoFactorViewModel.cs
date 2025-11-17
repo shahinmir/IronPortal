@@ -1,4 +1,4 @@
-﻿namespace eShop.Identity.API.Models.ManageViewModels
+﻿namespace IronExchange.Identity.API.Models.ManageViewModels
 {
     public record ConfigureTwoFactorViewModel
     {

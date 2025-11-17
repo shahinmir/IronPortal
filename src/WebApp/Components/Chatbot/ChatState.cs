@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel;
 using System.Security.Claims;
 using System.Text.Json;
-using eShop.WebAppComponents.Services;
+using IronExchange.WebAppComponents.Services;
 using Microsoft.Extensions.AI;
 
-namespace eShop.WebApp.Chatbot;
+namespace IronExchange.WebApp.Chatbot;
 
 public class ChatState
 {

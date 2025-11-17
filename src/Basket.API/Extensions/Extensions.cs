@@ -1,9 +1,9 @@
 ﻿using System.Text.Json.Serialization;
-using eShop.Basket.API.Repositories;
-using eShop.Basket.API.IntegrationEvents.EventHandling;
-using eShop.Basket.API.IntegrationEvents.EventHandling.Events;
+using IronExchange.Basket.API.Repositories;
+using IronExchange.Basket.API.IntegrationEvents.EventHandling;
+using IronExchange.Basket.API.IntegrationEvents.EventHandling.Events;
 
-namespace eShop.Basket.API.Extensions;
+namespace IronExchange.Basket.API.Extensions;
 
 public static class Extensions
 {

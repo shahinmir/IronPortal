@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using IronExchange.Ordering.Domain.Exceptions;
+using IronExchange.Ordering.Domain.Seedwork;
 
-namespace eShop.Ordering.Domain.AggregatesModel.OrderAggregate;
+namespace IronExchange.Ordering.Domain.AggregatesModel.OrderAggregate;
 
 public class OrderItem
     : Entity

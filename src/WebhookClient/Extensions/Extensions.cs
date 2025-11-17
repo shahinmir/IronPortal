@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server;
 
-namespace eShop.WebhookClient.Extensions;
+namespace IronExchange.WebhookClient.Extensions;
 
 public static class Extensions
 {
