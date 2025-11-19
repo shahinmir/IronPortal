@@ -1,6 +1,5 @@
 <Solution>
   <Folder Name="/src/">
-    <Project Path="src/Authorization.API/Authorization.API.csproj" Id="fb0d977b-d2e8-4321-aecb-4c4b30c56d66" />
     <Project Path="src/Basket.API/Basket.API.csproj" />
     <Project Path="src/Catalog.API/Catalog.API.csproj" />
     <Project Path="src/EventBus/EventBus.csproj" />
@@ -8,6 +7,7 @@
     <Project Path="src/Identity.API/Identity.API.csproj" />
     <Project Path="src/IntegrationEventLogEF/IntegrationEventLogEF.csproj" />
     <Project Path="src/IronExchange.AppHost/IronExchange.AppHost.csproj" />
+    <Project Path="src/IronExchange.Authorization/IronExchange.Authorization.csproj" Id="4c0e6d26-f29a-4e99-91a2-3e173a158d6b" />
     <Project Path="src/IronExchange.ServiceDefaults/IronExchange.ServiceDefaults.csproj" />
     <Project Path="src/Ordering.API/Ordering.API.csproj" />
     <Project Path="src/Ordering.Domain/Ordering.Domain.csproj" />
