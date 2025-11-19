@@ -1,7 +1,8 @@
 ﻿using IronExchange.WebApp.Components;
+using Microsoft.IdentityModel.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
-
+IdentityModelEventSource.ShowPII = true;
 builder.AddServiceDefaults();
 
 builder.Services.AddRazorComponents().AddInteractiveServerComponents();

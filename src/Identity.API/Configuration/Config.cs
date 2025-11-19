@@ -1,192 +1,162 @@
-﻿namespace IronExchange.Identity.API.Configuration
+﻿using Duende.IdentityServer.Models;
+using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
+
+namespace IronExchange.Identity.API.Configuration;
+
+public static class Config
 {
-    public class Config
-    {
-        // ApiResources define the apis in your system
-        public static IEnumerable<ApiResource> GetApis()
+    public static IEnumerable<IdentityResource> IdentityResources =>
+        new List<IdentityResource>
         {
-            return new List<ApiResource>
-            {
-                new ApiResource("orders", "Orders Service"),
-                new ApiResource("basket", "Basket Service"),
-                new ApiResource("webhooks", "Webhooks registration Service"),
-            };
-        }
+            new IdentityResources.OpenId(),
+            new IdentityResources.Profile(),
+            new IdentityResources.Email(),
+            new IdentityResources.Phone(),
+            new IdentityResources.Address(),
+            new IdentityResource("roles", "User roles", new[] { "role" }),
+            new IdentityResource("permissions", "User permissions", new[] { "permission" })
+        };
 
-        // ApiScope is used to protect the API 
-        //The effect is the same as that of API resources in IdentityServer 3.x
-        public static IEnumerable<ApiScope> GetApiScopes()
+    public static IEnumerable<ApiScope> ApiScopes =>
+        new List<ApiScope>
         {
-            return new List<ApiScope>
-            {
-                new ApiScope("orders", "Orders Service"),
-                new ApiScope("basket", "Basket Service"),
-                new ApiScope("webhooks", "Webhooks registration Service"),
-            };
-        }
+            new ApiScope("basket", "Basket API"),
+            new ApiScope("catalog", "Catalog API"),
+            new ApiScope("ordering", "Ordering API"),
+            new ApiScope("webhooks", "Webhooks API"),
+            new ApiScope("mobilebff", "Mobile BFF"),
+            new ApiScope("webshoppingagg", "Web Shopping Aggregator"),
 
-        // Identity resources are data like user ID, name, or email address of a user
-        // see: http://docs.identityserver.io/en/release/configuration/resources.html
-        public static IEnumerable<IdentityResource> GetResources()
+            new ApiScope("api.roles", "API Roles"),
+            new ApiScope("api.permissions", "API Permissions")
+        };
+
+    public static IEnumerable<ApiResource> ApiResources =>
+        new List<ApiResource>
         {
-            return new List<IdentityResource>
-            {
-                new IdentityResources.OpenId(),
-                new IdentityResources.Profile()
-            };
-        }
+            new ApiResource("basket")           { Scopes = { "basket" },          UserClaims = { "role", "permission" } },
+            new ApiResource("catalog")          { Scopes = { "catalog" },         UserClaims = { "role", "permission" } },
+            new ApiResource("ordering")         { Scopes = { "ordering" },        UserClaims = { "role", "permission" } },
+            new ApiResource("webhooks")         { Scopes = { "webhooks" },        UserClaims = { "role", "permission" } },
+            new ApiResource("mobilebff")        { Scopes = { "mobilebff" },       UserClaims = { "role", "permission" } },
+            new ApiResource("webshoppingagg")   { Scopes = { "webshoppingagg" },  UserClaims = { "role", "permission" } }
+        };
 
-        // client want to access resources (aka scopes)
-        public static IEnumerable<Client> GetClients(IConfiguration configuration)
+    public static IEnumerable<Client> Clients(IConfiguration configuration) =>
+        new List<Client>
         {
-            return new List<Client>
+            // ------------ Aspire Dashboard -----------------
+            new Client
             {
-                new Client
+                ClientId = "aspire-dashboard",
+                ClientName = "Aspire Dashboard",
+
+                AllowedGrantTypes = GrantTypes.Code,
+                RequireClientSecret = false,
+                RequirePkce = true,
+                RequirePushedAuthorization = false,
+
+                RedirectUris =
                 {
-                    ClientId = "maui",
-                    ClientName = "eShop MAUI OpenId Client",
-                    AllowedGrantTypes = GrantTypes.Code,                    
-                    //Used to retrieve the access token on the back channel.
-                    ClientSecrets =
-                    {
-                        new Secret("secret".Sha256())
-                    },
-                    RedirectUris = { configuration["MauiCallback"] },
-                    RequireConsent = false,
-                    RequirePkce = true,
-                    PostLogoutRedirectUris = { $"{configuration["MauiCallback"]}/Account/Redirecting" },
-                    //AllowedCorsOrigins = { "http://eshopxamarin" },
-                    AllowedScopes = new List<string>
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        IdentityServerConstants.StandardScopes.OfflineAccess,
-                        "orders",
-                        "basket",
-                        "mobileshoppingagg",
-                        "webhooks"
-                    },
-                    //Allow requesting refresh tokens for long lived API access
-                    AllowOfflineAccess = true,
-                    AllowAccessTokensViaBrowser = true,
-                    AlwaysIncludeUserClaimsInIdToken = true,
-                    AccessTokenLifetime = 60*60*2, // 2 hours
-                    IdentityTokenLifetime= 60*60*2 // 2 hours
+                    "https://localhost:7298/signin-oidc",
+                    "https://localhost:7298/authentication/login-callback"
                 },
-                new Client
+                PostLogoutRedirectUris =
                 {
-                    ClientId = "webapp",
-                    ClientName = "WebApp Client",
-                    ClientSecrets = new List<Secret>
-                    {
-                        new Secret("secret".Sha256())
-                    },
-                    ClientUri = $"{configuration["WebAppClient"]}",                             // public uri of the client
-                    AllowedGrantTypes = GrantTypes.Code,
-                    AllowAccessTokensViaBrowser = false,
-                    RequireConsent = false,
-                    AllowOfflineAccess = true,
-                    AlwaysIncludeUserClaimsInIdToken = true,
-                    RequirePkce = false,
-                    RedirectUris = new List<string>
-                    {
-                        $"{configuration["WebAppClient"]}/signin-oidc"
-                    },
-                    PostLogoutRedirectUris = new List<string>
-                    {
-                        $"{configuration["WebAppClient"]}/signout-callback-oidc"
-                    },
-                    AllowedScopes = new List<string>
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        IdentityServerConstants.StandardScopes.OfflineAccess,
-                        "orders",
-                        "basket",
-                        "webshoppingagg",
-                        "webhooks"
-                    },
-                    AccessTokenLifetime = 60*60*2, // 2 hours
-                    IdentityTokenLifetime= 60*60*2 // 2 hours
+                    "https://localhost:7298/signout-callback-oidc",
+                    "https://localhost:7298/authentication/logout-callback"
                 },
-                new Client
+
+                AllowedScopes =
                 {
-                    ClientId = "webhooksclient",
-                    ClientName = "Webhooks Client",
-                    ClientSecrets = new List<Secret>
-                    {
-                        new Secret("secret".Sha256())
-                    },
-                    ClientUri = $"{configuration["WebhooksWebClient"]}",                             // public uri of the client
-                    AllowedGrantTypes = GrantTypes.Code,
-                    AllowAccessTokensViaBrowser = false,
-                    RequireConsent = false,
-                    AllowOfflineAccess = true,
-                    AlwaysIncludeUserClaimsInIdToken = true,
-                    RedirectUris = new List<string>
-                    {
-                        $"{configuration["WebhooksWebClient"]}/signin-oidc"
-                    },
-                    PostLogoutRedirectUris = new List<string>
-                    {
-                        $"{configuration["WebhooksWebClient"]}/signout-callback-oidc"
-                    },
-                    AllowedScopes = new List<string>
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        IdentityServerConstants.StandardScopes.OfflineAccess,
-                        "webhooks"
-                    },
-                    AccessTokenLifetime = 60*60*2, // 2 hours
-                    IdentityTokenLifetime= 60*60*2 // 2 hours
+                    "openid", "profile", "email", "phone", "address",
+                    "roles", "permissions",
+                    "offline_access"
                 },
-                new Client
+                AllowOfflineAccess = true
+            },
+
+            // ------------ WebApp (Blazor Server) -----------------
+            new Client
+            {
+                ClientId = "webapp",
+                ClientName = "Web Application",
+                ClientSecrets = { new Secret("secret".Sha256()) },
+
+                AllowedGrantTypes = GrantTypes.Code,
+                RequirePkce = true,
+                AllowOfflineAccess = true,
+                AlwaysIncludeUserClaimsInIdToken = true,
+
+                RedirectUris =
                 {
-                    ClientId = "basketswaggerui",
-                    ClientName = "Basket Swagger UI",
-                    AllowedGrantTypes = GrantTypes.Implicit,
-                    AllowAccessTokensViaBrowser = true,
-
-                    RedirectUris = { $"{configuration["BasketApiClient"]}/swagger/oauth2-redirect.html" },
-                    PostLogoutRedirectUris = { $"{configuration["BasketApiClient"]}/swagger/" },
-
-                    AllowedScopes =
-                    {
-                        "basket"
-                    }
+                    $"{configuration["WebAppClient"]}/signin-oidc"
                 },
-                new Client
+                PostLogoutRedirectUris =
                 {
-                    ClientId = "orderingswaggerui",
-                    ClientName = "Ordering Swagger UI",
-                    AllowedGrantTypes = GrantTypes.Implicit,
-                    AllowAccessTokensViaBrowser = true,
-
-                    RedirectUris = { $"{configuration["OrderingApiClient"]}/swagger/oauth2-redirect.html" },
-                    PostLogoutRedirectUris = { $"{configuration["OrderingApiClient"]}/swagger/" },
-
-                    AllowedScopes =
-                    {
-                        "orders"
-                    }
+                    $"{configuration["WebAppClient"]}/signout-callback-oidc"
                 },
-                new Client
+
+                AllowedScopes =
                 {
-                    ClientId = "webhooksswaggerui",
-                    ClientName = "WebHooks Service Swagger UI",
-                    AllowedGrantTypes = GrantTypes.Implicit,
-                    AllowAccessTokensViaBrowser = true,
+                    // Identity
+                    "openid", "profile", "email", "phone", "address",
+                    "roles", "permissions",
 
-                    RedirectUris = { $"{configuration["WebhooksApiClient"]}/swagger/oauth2-redirect.html" },
-                    PostLogoutRedirectUris = { $"{configuration["WebhooksApiClient"]}/swagger/" },
+                    // API's
+                    "basket",
+                    "ordering",
+                    "catalog",
+                    "webhooks",
+                    "webshoppingagg",
 
-                    AllowedScopes =
-                    {
-                        "webhooks"
-                    }
+                    "api.roles",
+                    "api.permissions",
+
+                    "offline_access"
                 }
-            };
-        }
-    }
+            },
+
+            // ------------ Backend Microservices -----------------
+            new Client
+            {
+                ClientId = "basket",
+                ClientSecrets = { new Secret("secret".Sha256()) },
+                AllowedGrantTypes = GrantTypes.ClientCredentials,
+                AllowedScopes = { "basket", "catalog" }
+            },
+
+            new Client
+            {
+                ClientId = "ordering",
+                ClientSecrets = { new Secret("secret".Sha256()) },
+                AllowedGrantTypes = GrantTypes.ClientCredentials,
+                AllowedScopes = { "ordering", "basket", "catalog" }
+            },
+
+            new Client
+            {
+                ClientId = "webhooks",
+                ClientSecrets = { new Secret("secret".Sha256()) },
+                AllowedGrantTypes = GrantTypes.ClientCredentials,
+                AllowedScopes = { "webhooks" }
+            },
+
+            new Client
+            {
+                ClientId = "mobilebff",
+                ClientSecrets = { new Secret("secret".Sha256()) },
+                AllowedGrantTypes = GrantTypes.Code,
+                RedirectUris = { "http://localhost:5200/signin-oidc" },
+                RequirePkce = true,
+                AllowOfflineAccess = true,
+                AllowedScopes =
+                {
+                    "openid", "profile", "email",
+                    "mobilebff", "basket", "catalog", "ordering",
+                    "offline_access"
+                }
+            }
+        };
 }

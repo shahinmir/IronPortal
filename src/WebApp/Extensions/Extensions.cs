@@ -52,45 +52,69 @@ public static class Extensions
 
     public static void AddAuthenticationServices(this IHostApplicationBuilder builder)
     {
-        var configuration = builder.Configuration;
+        var config = builder.Configuration;
         var services = builder.Services;
 
         JsonWebTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
 
-        var identityUrl = configuration.GetRequiredValue("IdentityUrl");
-        var callBackUrl = configuration.GetRequiredValue("CallBackUrl");
-        var sessionCookieLifetime = configuration.GetValue("SessionCookieLifetimeMinutes", 60);
+        var identityUrl = config["IdentityUrl"]!;
+        var callbackUrl = config["CallBackUrl"]!;
+        var sessionLength = config.GetValue("SessionCookieLifetimeMinutes", 60);
 
-        // Add Authentication services
         services.AddAuthorization();
+
         services.AddAuthentication(options =>
         {
             options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
         })
-        .AddCookie(options => options.ExpireTimeSpan = TimeSpan.FromMinutes(sessionCookieLifetime))
+        .AddCookie(options =>
+        {
+            options.ExpireTimeSpan = TimeSpan.FromMinutes(sessionLength);
+        })
         .AddOpenIdConnect(options =>
         {
             options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+
             options.Authority = identityUrl;
-            options.SignedOutRedirectUri = callBackUrl;
             options.ClientId = "webapp";
             options.ClientSecret = "secret";
+
             options.ResponseType = "code";
+            options.UsePkce = true;
+
             options.SaveTokens = true;
             options.GetClaimsFromUserInfoEndpoint = true;
+
             options.RequireHttpsMetadata = false;
+            options.SignedOutRedirectUri = callbackUrl;
+
+            // ---- Scopes (کاملاً هماهنگ با Config) ----
+            options.Scope.Clear();
             options.Scope.Add("openid");
             options.Scope.Add("profile");
-            options.Scope.Add("orders");
+            options.Scope.Add("email");
+            options.Scope.Add("phone");
+            options.Scope.Add("address");
+
+            options.Scope.Add("roles");
+            options.Scope.Add("permissions");
+
             options.Scope.Add("basket");
+            options.Scope.Add("ordering");
+            options.Scope.Add("catalog");
+            options.Scope.Add("webhooks");
+            options.Scope.Add("webshoppingagg");
+
+            options.Scope.Add("api.roles");
+            options.Scope.Add("api.permissions");
+
+            options.Scope.Add("offline_access");
         });
 
-        // Blazor auth services
         services.AddScoped<AuthenticationStateProvider, ServerAuthenticationStateProvider>();
         services.AddCascadingAuthenticationState();
     }
-
     private static void AddAIServices(this IHostApplicationBuilder builder)
     {
         ChatClientBuilder? chatClientBuilder = null;

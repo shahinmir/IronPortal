@@ -1,7 +1,8 @@
 ﻿using IronExchange.AppHost;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = DistributedApplication.CreateBuilder(args);
-
+Environment.SetEnvironmentVariable("DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS", "true");
 builder.AddForwardedHeaders();
 
 var redis = builder.AddRedis("redis");
@@ -22,8 +23,12 @@ var launchProfileName = ShouldUseHttpForEndpoints() ? "http" : "https";
 
 // Services
 var identityApi = builder.AddProject<Projects.Identity_API>("identity-api", launchProfileName)
-    .WithExternalHttpEndpoints()
+  .WithExternalHttpEndpoints()
     .WithReference(identityDb);
+
+
+
+
 
 var identityEndpoint = identityApi.GetEndpoint(launchProfileName);
 
@@ -60,6 +65,8 @@ var webHooksApi = builder.AddProject<Projects.Webhooks_API>("webhooks-api")
 builder.AddYarp("mobile-bff")
     .WithExternalHttpEndpoints()
     .ConfigureMobileBffRoutes(catalogApi, orderingApi, identityApi);
+
+
 
 // Apps
 var webhooksClient = builder.AddProject<Projects.WebhookClient>("webhooksclient", launchProfileName)

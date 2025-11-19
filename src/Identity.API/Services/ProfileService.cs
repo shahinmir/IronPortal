@@ -1,118 +1,76 @@
-﻿namespace IronExchange.Identity.API.Services
+﻿using Duende.IdentityServer.Models;
+using Duende.IdentityServer.Services;
+
+using IronExchange.Identity.API.Models;
+using IronExchange.Identity.API.Services;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+
+namespace IronExchange.Identity.API.Services;
+
+public class ProfileService : IProfileService
 {
-    public class ProfileService : IProfileService
+    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly IPermissionService _permissionService;
+    private readonly ILogger<ProfileService> _logger;
+
+    public ProfileService(
+        UserManager<ApplicationUser> userManager,
+        IPermissionService permissionService,
+        ILogger<ProfileService> logger)
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        _userManager = userManager;
+        _permissionService = permissionService;
+        _logger = logger;
+    }
 
-        public ProfileService(UserManager<ApplicationUser> userManager)
+    public async Task GetProfileDataAsync(ProfileDataRequestContext context)
+    {
+        var userId = context.Subject.GetSubjectId();
+        var user = await _userManager.FindByIdAsync(userId);
+
+        if (user == null)
         {
-            _userManager = userManager;
+            _logger.LogWarning($"User {userId} not found");
+            return;
         }
 
-        public async Task GetProfileDataAsync(ProfileDataRequestContext context)
+        var claims = new List<Claim>
         {
-            var subject = context.Subject ?? throw new ArgumentNullException(nameof(context.Subject));
+            new Claim(JwtClaimTypes.Subject, user.Id),
+            new Claim(JwtClaimTypes.PreferredUserName, user.UserName),
+            new Claim(JwtClaimTypes.Name, $"{user.Name} {user.LastName}"),
+            new Claim(JwtClaimTypes.Email, user.Email),
+            new Claim(JwtClaimTypes.EmailVerified, user.EmailConfirmed.ToString().ToLower())
+        };
 
-            var subjectId = subject.Claims.Where(x => x.Type == "sub").FirstOrDefault()?.Value;
-
-            var user = await _userManager.FindByIdAsync(subjectId);
-            if (user == null)
-                throw new ArgumentException("Invalid subject identifier");
-
-            var claims = GetClaimsFromUser(user);
-            context.IssuedClaims = claims.ToList();
+        // ✅ اضافه کردن Roles
+        var roles = await _userManager.GetRolesAsync(user);
+        foreach (var role in roles)
+        {
+            claims.Add(new Claim(JwtClaimTypes.Role, role));
         }
 
-        public async Task IsActiveAsync(IsActiveContext context)
+        // ✅ اضافه کردن Permissions
+        var permissions = await _permissionService.GetUserPermissionsAsync(userId);
+        foreach (var permission in permissions)
         {
-            var subject = context.Subject ?? throw new ArgumentNullException(nameof(context.Subject));
-
-            var subjectId = subject.Claims.Where(x => x.Type == "sub").FirstOrDefault()?.Value;
-            var user = await _userManager.FindByIdAsync(subjectId);
-
-            context.IsActive = false;
-
-            if (user != null)
-            {
-                if (_userManager.SupportsUserSecurityStamp)
-                {
-                    var security_stamp = subject.Claims.Where(c => c.Type == "security_stamp").Select(c => c.Value).SingleOrDefault();
-                    if (security_stamp != null)
-                    {
-                        var db_security_stamp = await _userManager.GetSecurityStampAsync(user);
-                        if (db_security_stamp != security_stamp)
-                            return;
-                    }
-                }
-
-                context.IsActive =
-                    !user.LockoutEnabled ||
-                    !user.LockoutEnd.HasValue ||
-                    user.LockoutEnd <= DateTime.UtcNow;
-            }
+            claims.Add(new Claim("permission", permission));
         }
 
-        private IEnumerable<Claim> GetClaimsFromUser(ApplicationUser user)
-        {
-            var claims = new List<Claim>
-            {
-                new Claim(JwtClaimTypes.Subject, user.Id),
-                new Claim(JwtClaimTypes.PreferredUserName, user.UserName),
-                new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
-            };
+        // ✅ فقط claimهایی که requested شده‌اند را برگردانید
+        context.IssuedClaims = claims
+            .Where(c => context.RequestedClaimTypes.Contains(c.Type))
+            .ToList();
 
-            if (!string.IsNullOrWhiteSpace(user.Name))
-                claims.Add(new Claim("name", user.Name));
+        _logger.LogInformation($"Profile data issued for user {userId} with {context.IssuedClaims.Count} claims");
+    }
 
-            if (!string.IsNullOrWhiteSpace(user.LastName))
-                claims.Add(new Claim("last_name", user.LastName));
+    public async Task IsActiveAsync(IsActiveContext context)
+    {
+        var userId = context.Subject.GetSubjectId();
+        var user = await _userManager.FindByIdAsync(userId);
 
-            if (!string.IsNullOrWhiteSpace(user.CardNumber))
-                claims.Add(new Claim("card_number", user.CardNumber));
-
-            if (!string.IsNullOrWhiteSpace(user.CardHolderName))
-                claims.Add(new Claim("card_holder", user.CardHolderName));
-
-            if (!string.IsNullOrWhiteSpace(user.SecurityNumber))
-                claims.Add(new Claim("card_security_number", user.SecurityNumber));
-
-            if (!string.IsNullOrWhiteSpace(user.Expiration))
-                claims.Add(new Claim("card_expiration", user.Expiration));
-
-            if (!string.IsNullOrWhiteSpace(user.City))
-                claims.Add(new Claim("address_city", user.City));
-
-            if (!string.IsNullOrWhiteSpace(user.Country))
-                claims.Add(new Claim("address_country", user.Country));
-
-            if (!string.IsNullOrWhiteSpace(user.State))
-                claims.Add(new Claim("address_state", user.State));
-
-            if (!string.IsNullOrWhiteSpace(user.Street))
-                claims.Add(new Claim("address_street", user.Street));
-
-            if (!string.IsNullOrWhiteSpace(user.ZipCode))
-                claims.Add(new Claim("address_zip_code", user.ZipCode));
-
-            if (_userManager.SupportsUserEmail)
-            {
-                claims.AddRange(new[]
-                {
-                    new Claim(JwtClaimTypes.Email, user.Email),
-                    new Claim(JwtClaimTypes.EmailVerified, user.EmailConfirmed ? "true" : "false", ClaimValueTypes.Boolean)
-                });
-            }
-
-            if (_userManager.SupportsUserPhoneNumber && !string.IsNullOrWhiteSpace(user.PhoneNumber))
-            {
-                claims.AddRange(new[]
-                {
-                    new Claim(JwtClaimTypes.PhoneNumber, user.PhoneNumber),
-                    new Claim(JwtClaimTypes.PhoneNumberVerified, user.PhoneNumberConfirmed ? "true" : "false", ClaimValueTypes.Boolean)
-                });
-            }
-
-            return claims;
-        }
+        context.IsActive = user != null && user.EmailConfirmed;
     }
 }
